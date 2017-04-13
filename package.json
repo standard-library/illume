@@ -1,0 +1,30 @@
+{
+  "name": "illume",
+  "version": "1.0.1",
+  "description": "Get a pair of streams that emit the names of the active sections",
+  "main": "build/illume.js",
+  "scripts": {
+    "build": "babel illume.js --out-dir build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/standard-library/illume.git"
+  },
+  "author": "Standard Library",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/standard-library/illume/issues"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@artcommacode/q": "^2.1.0",
+    "kefir": "^3.7.0",
+    "ramda": "^0.23.0"
+  },
+  "devDependencies": {
+   "babel-cli": "^6.18.0",
+   "babel-preset-es2015": "^6.18.0",
+   "babel-register": "^6.18.0"
+  }
+}
