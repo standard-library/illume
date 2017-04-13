@@ -1,6 +1,6 @@
 {
   "name": "illume",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get a pair of streams that emit the names of the active sections",
   "main": "build/illume.js",
   "scripts": {
