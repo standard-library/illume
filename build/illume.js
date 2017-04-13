@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _ramda = require("ramda");
 
-var _q = require("@artcommacode/q");
+var _q = require("@standard-library/q");
 
 var _kefir = require("kefir");
 
