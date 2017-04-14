@@ -9,7 +9,6 @@ const bottomAbove = (y, element) => {
 };
 
 function illume(attribute) {
-  const $window = $(window);
   const getName = (a) => $(a).data(attribute);
   const areas = query(`[data-${attribute}]`);
   const names = map(getName, areas);
@@ -18,8 +17,8 @@ function illume(attribute) {
   const resize = K.fromEvents(window, "resize");
   const redraw = K.merge([scroll, resize]);
 
-  const scrollY = redraw.map(() => $window.scrollTop());
-  const windowHeight = redraw.map(() => $window.height());
+  const scrollY = redraw.map(() => window.scrollY;
+  const windowHeight = redraw.map(() => window.innerHeight;
   const visibileY = K.combine([scrollY, windowHeight], (y, h) => y + h);
 
   const viewedAreas = visibileY.map(function (y) {
