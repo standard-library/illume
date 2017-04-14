@@ -8,7 +8,7 @@ const bottomAbove = (y, element) => {
 };
 
 function illume(attribute) {
-  const getName = (a) => $(a).data(attribute);
+  const getName = (a) => element.getAttribute(attribute);
   const areas = query(`[data-${attribute}]`);
   const names = map(getName, areas);
 
@@ -26,7 +26,7 @@ function illume(attribute) {
   const lastViewedArea = viewedAreas.map((as) => as[as.length - 1]);
   const activeArea =
     lastViewedArea.map(function (element) {
-      if (element && bottomAbove($window.scrollTop(), element)) {
+      if (element && bottomAbove(window.scrollY, element)) {
         return element;
       }
     }).toProperty().skipDuplicates();
