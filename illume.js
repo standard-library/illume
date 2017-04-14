@@ -2,10 +2,9 @@ import { map, filter, reject, equals, uniq } from "ramda";
 import { query } from "@standard-library/q";
 import { Kefir as K } from "kefir";
 
-const offsetAbove = (y, element) => y > $(element).offset().top;
+const offsetAbove = (y, element) => y > element.offsetTop;
 const bottomAbove = (y, element) => {
-  const $element = $(element);
-  return y < $element.offset().top + $element.outerHeight();
+  return y < element.offsetTop + element.offsetHeight;
 };
 
 function illume(attribute) {
