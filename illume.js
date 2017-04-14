@@ -16,8 +16,8 @@ function illume(attribute) {
   const resize = K.fromEvents(window, "resize");
   const redraw = K.merge([scroll, resize]);
 
-  const scrollY = redraw.map(() => window.scrollY;
-  const windowHeight = redraw.map(() => window.innerHeight;
+  const scrollY = redraw.map(() => window.scrollY);
+  const windowHeight = redraw.map(() => window.innerHeight);
   const visibileY = K.combine([scrollY, windowHeight], (y, h) => y + h);
 
   const viewedAreas = visibileY.map(function (y) {

@@ -11,17 +11,15 @@ var _q = require("@standard-library/q");
 var _kefir = require("kefir");
 
 var offsetAbove = function offsetAbove(y, element) {
-  return y > $(element).offset().top;
+  return y > element.offsetTop;
 };
 var bottomAbove = function bottomAbove(y, element) {
-  var $element = $(element);
-  return y < $element.offset().top + $element.outerHeight();
+  return y < element.offsetTop + element.offsetHeight;
 };
 
 function illume(attribute) {
-  var $window = $(window);
   var getName = function getName(a) {
-    return $(a).data(attribute);
+    return element.getAttribute(attribute);
   };
   var areas = (0, _q.query)("[data-" + attribute + "]");
   var names = (0, _ramda.map)(getName, areas);
@@ -31,10 +29,10 @@ function illume(attribute) {
   var redraw = _kefir.Kefir.merge([scroll, resize]);
 
   var scrollY = redraw.map(function () {
-    return $window.scrollTop();
+    return window.scrollY;
   });
   var windowHeight = redraw.map(function () {
-    return $window.height();
+    return window.innerHeight;
   });
   var visibileY = _kefir.Kefir.combine([scrollY, windowHeight], function (y, h) {
     return y + h;
@@ -49,7 +47,7 @@ function illume(attribute) {
     return as[as.length - 1];
   });
   var activeArea = lastViewedArea.map(function (element) {
-    if (element && bottomAbove($window.scrollTop(), element)) {
+    if (element && bottomAbove(window.scrollY, element)) {
       return element;
     }
   }).toProperty().skipDuplicates();
