@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _ramda = require("ramda");
 
-var _q = require("@standard-library/q");
+var _qPrime = require("@standard-library/q-prime");
 
 var _kefir = require("kefir");
 
@@ -23,7 +23,7 @@ function illume(attribute) {
   var getName = function getName(a) {
     return $(a).data(attribute);
   };
-  var areas = (0, _q.query)("[data-" + attribute + "]");
+  var areas = (0, _qPrime.query)("[data-" + attribute + "]");
   var names = (0, _ramda.map)(getName, areas);
 
   var scroll = _kefir.Kefir.fromEvents(window, "scroll");

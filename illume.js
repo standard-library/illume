@@ -1,5 +1,5 @@
 import { map, filter, reject, equals, uniq } from "ramda";
-import { query } from "@standard-library/q";
+import { query } from "@standard-library/q-prime";
 import { Kefir as K } from "kefir";
 
 const offsetAbove = (y, element) => y > $(element).offset().top;
