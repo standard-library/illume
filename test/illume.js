@@ -2,6 +2,8 @@ import test from "tape";
 
 import illume from "..";
 
-test('creates an element with a class', (t) => {
 
+test('returns active and inactive elements', function (t) {
+  t.comment(JSON.stringify(illume("name")));
+  t.end();
 });

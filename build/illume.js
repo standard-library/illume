@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _ramda = require("ramda");
 
-var _q = require("@standard-library/q");
+var _qPrime = require("@standard-library/q-prime");
 
 var _kefir = require("kefir");
 
@@ -19,10 +19,9 @@ var bottomAbove = function bottomAbove(y, element) {
 
 function illume(attribute) {
   var getName = function getName(a) {
-    return element.dataset.attribute;
+    return a.dataset.attribute;
   };
-
-  var areas = (0, _q.query)("[data-" + attribute + "]");
+  var areas = (0, _qPrime.query)("[data-" + attribute + "]");
   var names = (0, _ramda.map)(getName, areas);
 
   var scroll = _kefir.Kefir.fromEvents(window, "scroll");
@@ -40,7 +39,7 @@ function illume(attribute) {
   });
 
   var viewedAreas = visibileY.map(function (y) {
-    console.log(offsetAbove);
+    console.log(offsetAbove(y, a));
     return (0, _ramda.filter)(function (a) {
       return offsetAbove(y, a);
     }, areas);

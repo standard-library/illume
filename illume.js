@@ -1,5 +1,5 @@
 import { map, filter, reject, equals, uniq } from "ramda";
-import { query } from "@standard-library/q";
+import { query } from "@standard-library/q-prime";
 import { Kefir as K } from "kefir";
 
 const offsetAbove = (y, element) => y > element.offsetTop;
@@ -8,8 +8,7 @@ const bottomAbove = (y, element) => {
 };
 
 function illume(attribute) {
-  const getName = (a) => element.dataset.attribute;
-
+  const getName = (a) => a.dataset.attribute;
   const areas = query(`[data-${attribute}]`);
   const names = map(getName, areas);
 
@@ -22,6 +21,7 @@ function illume(attribute) {
   const visibileY = K.combine([scrollY, windowHeight], (y, h) => y + h);
 
   const viewedAreas = visibileY.map(function (y) {
+    console.log(offsetAbove(y, a));
     return filter((a) => offsetAbove(y, a), areas);
   });
   const lastViewedArea = viewedAreas.map((as) => as[as.length - 1]);

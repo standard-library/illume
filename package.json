@@ -30,7 +30,7 @@
    "babelify": "^7.3.0",
    "browserify": "^13.3.0",
    "faucet": "^0.0.1",
-   "tape": "^4.6.3",
-   "tape-run": "^2.1.5"
+   "tape": "2.3.2",
+   "tape-run": "2.1.5"
   }
 }
