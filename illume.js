@@ -22,7 +22,6 @@ function illume(attribute) {
   const visibileY = K.combine([scrollY, windowHeight], (y, h) => y + h);
 
   const viewedAreas = visibileY.map(function (y) {
-    console.log(offsetAbove);
     return filter((a) => offsetAbove(y, a), areas);
   });
   const lastViewedArea = viewedAreas.map((as) => as[as.length - 1]);
