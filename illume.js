@@ -8,7 +8,8 @@ const bottomAbove = (y, element) => {
 };
 
 function illume(attribute) {
-  const getName = (a) => element.getAttribute(attribute);
+  const getName = (a) => element.dataset.attribute;
+
   const areas = query(`[data-${attribute}]`);
   const names = map(getName, areas);
 
@@ -21,6 +22,7 @@ function illume(attribute) {
   const visibileY = K.combine([scrollY, windowHeight], (y, h) => y + h);
 
   const viewedAreas = visibileY.map(function (y) {
+    console.log(offsetAbove);
     return filter((a) => offsetAbove(y, a), areas);
   });
   const lastViewedArea = viewedAreas.map((as) => as[as.length - 1]);

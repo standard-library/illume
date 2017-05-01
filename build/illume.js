@@ -19,8 +19,9 @@ var bottomAbove = function bottomAbove(y, element) {
 
 function illume(attribute) {
   var getName = function getName(a) {
-    return element.getAttribute(attribute);
+    return element.dataset.attribute;
   };
+
   var areas = (0, _q.query)("[data-" + attribute + "]");
   var names = (0, _ramda.map)(getName, areas);
 
@@ -39,6 +40,7 @@ function illume(attribute) {
   });
 
   var viewedAreas = visibileY.map(function (y) {
+    console.log(offsetAbove);
     return (0, _ramda.filter)(function (a) {
       return offsetAbove(y, a);
     }, areas);
