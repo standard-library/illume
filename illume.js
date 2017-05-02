@@ -2,12 +2,22 @@ import { map, filter, reject, equals, uniq } from "ramda";
 import { query } from "@standard-library/q-prime";
 import { Kefir as K } from "kefir";
 
-const offsetAbove = (y, element) => y > element.offsetTop;
+const offsetAbove = (y, element) => y > offsetTop(element);
 
 const bottomAbove = (y, element) => {
-  return y < element.offsetTop + element.offsetHeight;
+  return y < offsetTop(element) + element.offsetHeight;
 };
 
+const offsetTop = (element) => {
+  if (!element.getClientRects().length ) {
+    return 0;
+  }
+
+  const rect = element.getBoundingClientRect();
+  const win = element.ownerDocument.defaultView;
+
+  return rect.top + win.pageYOffset;
+}
 
 function illume(attribute) {
   const getName = (a) => a.dataset[attribute];

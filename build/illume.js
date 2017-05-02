@@ -11,11 +11,22 @@ var _qPrime = require("@standard-library/q-prime");
 var _kefir = require("kefir");
 
 var offsetAbove = function offsetAbove(y, element) {
-  return y > element.offsetTop;
+  return y > offsetTop(element);
 };
 
 var bottomAbove = function bottomAbove(y, element) {
-  return y < element.offsetTop + element.offsetHeight;
+  return y < offsetTop(element) + element.offsetHeight;
+};
+
+var offsetTop = function offsetTop(element) {
+  if (!element.getClientRects().length) {
+    return 0;
+  }
+
+  var rect = element.getBoundingClientRect();
+  var win = element.ownerDocument.defaultView;
+
+  return rect.top + win.pageYOffset;
 };
 
 function illume(attribute) {
