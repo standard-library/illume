@@ -13,17 +13,17 @@ var _kefir = require("kefir");
 var offsetAbove = function offsetAbove(y, element) {
   return y > element.offsetTop;
 };
+
 var bottomAbove = function bottomAbove(y, element) {
   return y < element.offsetTop + element.offsetHeight;
 };
 
 function illume(attribute) {
   var getName = function getName(a) {
-    return a.dataset.attribute;
+    return a.dataset[attribute];
   };
   var areas = (0, _qPrime.query)("[data-" + attribute + "]");
   var names = (0, _ramda.map)(getName, areas);
-
   var scroll = _kefir.Kefir.fromEvents(window, "scroll");
   var resize = _kefir.Kefir.fromEvents(window, "resize");
   var redraw = _kefir.Kefir.merge([scroll, resize]);
@@ -37,13 +37,12 @@ function illume(attribute) {
   var visibileY = _kefir.Kefir.combine([scrollY, windowHeight], function (y, h) {
     return y + h;
   });
-
   var viewedAreas = visibileY.map(function (y) {
-    console.log(offsetAbove(y, a));
     return (0, _ramda.filter)(function (a) {
       return offsetAbove(y, a);
     }, areas);
   });
+
   var lastViewedArea = viewedAreas.map(function (as) {
     return as[as.length - 1];
   });
