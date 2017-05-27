@@ -5,7 +5,10 @@
   "main": "build/illume.js",
   "scripts": {
     "build": "babel illume.js --out-dir build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-chrome": "npm run build && browserify test/*.js -t [ babelify ] | tape-run --browser chrome | faucet",
+    "test-safari": "npm run build && browserify test/*.js -t [ babelify ] | tape-run --browser safari | faucet",
+    "test-firefox": "npm run build && browserify test/*.js -t [ babelify ] | tape-run --browser firefox | faucet",
+    "test": "npm run test-safari"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,11 @@
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-es2015": "^6.18.0",
-    "babel-register": "^6.18.0"
+    "babel-register": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.3.0",
+    "faucet": "^0.0.1",
+    "tape": "2.3.2",
+    "tape-run": "2.1.5"
   }
 }
