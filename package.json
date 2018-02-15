@@ -5,6 +5,7 @@
   "main": "build/illume.js",
   "scripts": {
     "build": "babel illume.js --out-dir build",
+    "test-electron": "npm run build && browserify test/*.js -t [ babelify ] | tape-run | faucet",
     "test-chrome": "npm run build && browserify test/*.js -t [ babelify ] | tape-run --browser chrome | faucet",
     "test-safari": "npm run build && browserify test/*.js -t [ babelify ] | tape-run --browser safari | faucet",
     "test-firefox": "npm run build && browserify test/*.js -t [ babelify ] | tape-run --browser firefox | faucet",
@@ -31,7 +32,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.3.0",
     "faucet": "^0.0.1",
-    "tape": "2.3.2",
-    "tape-run": "2.1.5"
+    "tape": "4.8.0",
+    "tape-run": "^3.0.4"
   }
 }
