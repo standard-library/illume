@@ -18,24 +18,56 @@ const offsetTop = element => {
   return rect.top + win.pageYOffset;
 };
 
-function illume(attribute) {
-  const getName = a => a.dataset[attribute];
-  const areas = query(`[data-${attribute}]`);
-  const names = areas.map(getName);
+const uniq = function(arr, select) {
+  var len = arr.length;
+  var ret = [];
+  var v;
+
+  select = select ? (select instanceof Array ? select : [select]) : false;
+
+  for (var i = 0; i < len; i++) {
+    v = arr[i];
+    if (select && !~indexOf(select, v)) {
+      ret.push(v);
+    } else if (!~indexOf(ret, v)) {
+      ret.push(v);
+    }
+  }
+  return ret;
+};
+
+const DEFAULT_Y = () => {
   const scroll = K.fromEvents(window, "scroll");
   const resize = K.fromEvents(window, "resize");
   const redraw = K.merge([scroll, resize]);
 
-  const scrollY = redraw.map(() => window.scrollY);
-  const windowHeight = redraw.map(() => window.innerHeight);
-  const visibileY = K.combine([scrollY, windowHeight], (y, h) => y + h);
-  const viewedAreas = visibileY.map(function(y) {
+  return redraw.map(() => window.scrollY);
+};
+
+const DEFAULT_HEIGHT = () => {
+  const scroll = K.fromEvents(window, "scroll");
+  const resize = K.fromEvents(window, "resize");
+  const redraw = K.merge([scroll, resize]);
+
+  return redraw.map(() => window.innerHeight);
+};
+
+function illume(
+  attribute,
+  { scrollY = DEFAULT_Y(), windowHeight = DEFAULT_HEIGHT() } = {}
+) {
+  const getName = a => a.dataset[attribute];
+  const areas = query(`[data-${attribute}]`);
+  const names = areas.map(getName);
+
+  const visibleY = K.combine([scrollY, windowHeight], (y, h) => y + h);
+  const viewedAreas = visibleY.map(y => {
     return areas.filter(a => offsetAbove(y, a));
   });
 
   const lastViewedArea = viewedAreas.map(as => as[as.length - 1]);
   const activeArea = lastViewedArea
-    .map(function(element) {
+    .map(element => {
       if (element && bottomAbove(window.scrollY, element)) {
         return element;
       }
