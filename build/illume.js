@@ -34,7 +34,7 @@ function illume(attribute) {
     return a.dataset[attribute];
   };
   var areas = (0, _qPrime.query)("[data-" + attribute + "]");
-  var names = (0, _ramda.map)(getName, areas);
+  var names = areas.map(getName);
   var scroll = _kefir.Kefir.fromEvents(window, "scroll");
   var resize = _kefir.Kefir.fromEvents(window, "resize");
   var redraw = _kefir.Kefir.merge([scroll, resize]);
@@ -49,9 +49,9 @@ function illume(attribute) {
     return y + h;
   });
   var viewedAreas = visibileY.map(function (y) {
-    return (0, _ramda.filter)(function (a) {
+    return areas.filter(function (a) {
       return offsetAbove(y, a);
-    }, areas);
+    });
   });
 
   var lastViewedArea = viewedAreas.map(function (as) {
@@ -65,7 +65,9 @@ function illume(attribute) {
 
   var active = activeArea.map(getName);
   var inactive = active.map(function (a) {
-    return (0, _ramda.reject)((0, _ramda.equals)(a), names);
+    return names.filter(function (n) {
+      return n !== a;
+    });
   }).map(_ramda.uniq).flatten();
 
   return {

@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "@standard-library/q-prime": "^3.0.4",
-    "kefir": "^3.7.0",
-    "ramda": "^0.23.0"
+    "kefir": "^3.7.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
